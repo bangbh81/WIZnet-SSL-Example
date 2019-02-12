@@ -13,11 +13,12 @@ WIZnet SSL example for W5100S
 ## 테스트
 1. 테스트 서버 구성
 self certificate 폴더에 있는 "openssl self signed certificate 생성 및 임시 서버 구동" 문서를 참고하여 SSL 서버를 구동합니다.
-이미지![](http://)
+![S_Client](./image/sslserver.PNG)
 
 2. W5100S EVB 준비
 테스트 서버와 통신할 수 있도록 W5100S EVB의 네트워크 정보를 코드 수정을 통해 구성하고 컴파일한 후 펌웨어를 업로드 합니다.
 main.c의 22번째 줄에서 수정할 수 있습니다.
+<code>
 	wiz_NetInfo defaultNetInfo = { .mac = {0x00,0x08,0xdc,0xff,0xee,0xdd},
 							.ip = {192,168,128,128},
 							.sn = {255,255,255,0},
@@ -25,6 +26,8 @@ main.c의 22번째 줄에서 수정할 수 있습니다.
 							.dns = {168, 126, 63, 1},
 							.dhcp = NETINFO_STATIC};
 	unsigned char gServer_IP[4] = {192,168,128,244};
+</code>
+
 이미지
 3. 테스트 구성 및 결과 확인
 테스트 서버와 프로그램된 W5100S EVB를 같은 네트워크에 연결하고 USB를 통해 전원을 연결합니다.
